@@ -1,48 +1,87 @@
 #ifndef EMPLEADO_H
 #define EMPLEADO_H
 #include<string>
+#include "tarea.h"
+
+
+using namespace std; 
 
 class empleado{
-	public: 
-		empleado(string n,int e,int nn,int h,int p);
-		string nombre();
-		int edad();
-		int nivel();
-		int habilidad();
-		int pereza();
-		~empleado();
 	private:
 		string nombre;
 		int edad,nivel,habilidad,pereza;
+		bool estado;
+		tarea* tare;
+	public: 
+		empleado(string n,int e,int nn,int h,int p,bool es);
+		string getnombre();
+		int getedad();
+		int getnivel();
+		int gethabilidad();
+		int getpereza();
+		bool getestado();
+		void setestado(bool v);
+		void setTarea(tarea* tt);
+		tarea* getTarea();
+		~empleado();
+	
 };
 
-empleado::empleado(string n,int e,int nn,int h,int p){
+empleado::empleado(string n,int e,int nn,int h,int p,bool es){
 	nombre=n;
 	edad=e;
 	nivel=nn;
 	habilidad=h;
 	pereza=p;
+	estado=es;
 }
 
-string empleado::nombre(){
+string empleado::getnombre(){
 	return nombre;
 }
 
-int empleado::edad(){
+int empleado::getedad(){
 	return edad;
 }
 
-int empleado::nivel(){
+int empleado::getnivel(){
 	return nivel;
 }
 
-int empleado::habilidad(){
+int empleado::gethabilidad(){
 	return habilidad;
 }
 
-int empleado::pereza(){
+int empleado::getpereza(){
 	return pereza;
 }
 
+bool empleado:: getestado(){
+	return estado;
+}
+
+void empleado:: setestado(bool v){
+estado=v;
+}
+
+tarea* empleado::getTarea(){
+	return tare;
+}
+
+void empleado::setTarea(tarea* tt){
+	tare=tt;
+}
+
 #endif
+
+
+
+
+
+
+
+
+
+
+
 
