@@ -13,3 +13,10 @@ CursorCol=43
 CursorRow=23
 TopLine=1
 LeftChar=1
+[Editors]
+Order=0
+[Editor_0]
+CursorCol=17
+CursorRow=120
+TopLine=16
+LeftChar=1

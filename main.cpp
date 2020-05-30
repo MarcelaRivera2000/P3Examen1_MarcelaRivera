@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
 				break;
 			}
 			case 7:{
-				//exit (EXIT_FAILURE);
+				exit (EXIT_FAILURE);
 				break;
 			}
 		}
@@ -123,26 +123,29 @@ void proyecto(){
 		dias+=tareas[i]->getcarga();
 	}
 	cout<<"Dias para terminar el proyecto:"<<dias<<endl<<endl;
-	while(true){
+	while(tareas.size()!=0){
 		int op;
-		cout<<"1. Siguiente día"<<endl<< "2. Generar reporte"<<endl<<"3. Salir"<<endl;
+		cout<<"1. Siguiente dia"<<endl<< "2. Generar reporte"<<endl<<"3. Salir"<<endl;
 		cin>>op;
 		switch(op){
 			case 1:{
 				dias--;
-				cout<<dias<<endl;
-			 	dia_siguiente();
+				cout<<"Dia: "<<dias<<endl;
+				
 				break;
 			}
 			case 2:{
-				//cout<<"Tareas en backlog: "<<endl;	
+				dia_siguiente();
+				break;
 			}
 			case 3:{
 				cout<<"Fin del proyecto con"<<dias<<" dias faltantes"<<endl;
+				exit (EXIT_FAILURE);
 				break;
 			}
-		}			
+		}		
 	}	
+	cout<<"TERMINADO"<<endl;
 }
 
 void dia_siguiente(){
@@ -167,8 +170,10 @@ void dia_siguiente(){
 						lograron++;
 						if(tareas[j]->getcarga()==0){
 							tareas.erase( tareas. begin() + j );
+
 						}else{
 							tareas[j]->setCarga(tareas[j]->getcarga()-1);
+
 						}
 					}
 				}
@@ -177,7 +182,9 @@ void dia_siguiente(){
 			}
 		}
 	}
-	cout<<"Tareas en backlog: "<<back<<endl<<"Tareas en proceso: "<<progreso<<endl<<"Empleados Perezosos: "<<perezosos<<"Empleados que fallaron: "<<fallaron<<endl<<"Empleados que lo lograron: "<<lograron<<endl;
+	cout<<endl<<"------------------------"<<"Tareas en backlog: "<<back<<endl<<"Tareas en proceso: "<<progreso<<endl<<
+	"Empleados Perezosos: "<<perezosos<<endl<<"Empleados que fallaron: "<<fallaron<<endl<<"Empleados que lo lograron: "<<lograron<<endl;
+	cout<<endl;
 }
 
 
