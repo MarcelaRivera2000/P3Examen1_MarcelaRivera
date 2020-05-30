@@ -2,6 +2,8 @@
 #include <string> 
 #include <vector>
 #include "tarea.h"
+#include <stdlib.h> 
+#include <time.h> 
 #include "empleado.h"
 
 using namespace std; 
@@ -144,20 +146,38 @@ void proyecto(){
 }
 
 void dia_siguiente(){
+	int back=0,progreso=0,perezosos=0,fallaron=0,lograron=0;	
 	for(int i=0;i<empleados.size();i++){
 		for(int j=0;j<tareas.size();j++){
 			if(tareas[j]->getnivel()<=empleados[i]->getnivel()){
-				if(empleados[i]->getestado()==true &&tareas[j]->getestado()==true){
+				if(empleados[i]->getestado()==false &&tareas[j]->getestado()==false){
 					empleados[i]->setTarea(tareas[j]);
 					empleados[i]->setestado(true);
 					tareas[j]->setestado(true);
-					
+					progreso++;
 				}
-			}	
+				srand (time(NULL));
+				int x = rand() % 101;
+				if(empleados[i]->getpereza()<x){
+					perezosos++;
+					int h=rand() % 101;
+					if(empleados[i]->gethabilidad()<h){
+						fallaron++;		
+					}else{
+						lograron++;
+						if(tareas[j]->getcarga()==0){
+							tareas.erase( tareas. begin() + j );
+						}else{
+							tareas[j]->setCarga(tareas[j]->getcarga()-1);
+						}
+					}
+				}
+			}else{
+				back++;
+			}
 		}
 	}
-	
-	
+	cout<<"Tareas en backlog: "<<back<<endl<<"Tareas en proceso: "<<progreso<<endl<<"Empleados Perezosos: "<<perezosos<<"Empleados que fallaron: "<<fallaron<<endl<<"Empleados que lo lograron: "<<lograron<<endl;
 }
 
 
